@@ -1,87 +1,161 @@
 ```markdown
-# Modern Agent — 現代化 AI Agent 框架
+<div align="center">
 
-[![Python Version](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/your-username/Modern_agent/actions)
-[![GitHub Stars](https://img.shields.io/github/stars/your-username/Modern_agent?style=social)](https://github.com/your-username/Modern_agent)
+# 🧠 Modern Agent
 
-**Modern Agent** 是一個輕量級、可擴展的 AI Agent 框架，專為開發者打造，讓你能夠快速構建具備自主決策、工具調用與記憶管理能力的智能代理。無論是自動化工作流程、對話機器人，還是複雜的多步驟任務，Modern Agent 都能以最小的配置成本提供強大的執行力。
+**現代化 AI Agent 框架 — 打造智能、可擴展、生產就緒的自主代理系統**
 
----
+[![GitHub Release](https://img.shields.io/github/v/release/your-username/Modern_agent?style=for-the-badge&logo=github&color=blue)](https://github.com/your-username/Modern_agent/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Code Style: Black](https://img.shields.io/badge/Code%20Style-Black-000000?style=for-the-badge)](https://github.com/psf/black)
+[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen?style=for-the-badge)](https://github.com/your-username/Modern_agent/pulls)
 
-## Features
-
-- **模組化設計** — 核心組件（LLM、記憶、工具、規劃器）均可獨立替換與擴展。
-- **多 LLM 支援** — 原生支援 OpenAI、Anthropic、Hugging Face 等主流模型，並提供統一接口。
-- **工具生態** — 內建網頁搜索、代碼執行、文件操作等常用工具，並允許自定義工具註冊。
-- **持久化記憶** — 支援短期（對話上下文）與長期（向量資料庫）記憶，實現連續交互。
-- **動態規劃** — 基於 ReAct 與 Chain-of-Thought 模式，自動分解任務並逐步執行。
-- **非同步架構** — 基於 `asyncio` 構建，適合高併發與即時應用場景。
-- **完整日誌與監控** — 內建日誌系統，方便追蹤 Agent 思考與行動過程。
+</div>
 
 ---
 
-## Installation
+## ✨ 功能特色
 
-確保你已安裝 Python 3.10 或更高版本。推薦使用虛擬環境：
+Modern Agent 是一個基於最新 AI 技術設計的模組化代理框架，專注於開發者體驗與生產環境的穩定性。
+
+- **🧩 模組化架構** — 插件式設計，輕鬆擴展工具、記憶與推理模組。
+- **⚡ 高效能執行** — 支援非同步任務排程與平行工具呼叫。
+- **🔌 豐富整合** — 內建 OpenAI / Anthropic / Ollama 等多模型支援。
+- **📚 知識管理** — 內建向量記憶與長期對話摘要機制。
+- **🛡️ 生產就緒** — 完整的日誌、錯誤處理與速率限制機制。
+
+---
+
+## 📦 安裝
+
+### 使用 pip（推薦）
 
 ```bash
-# 使用 pip 安裝
 pip install modern-agent
+```
 
-# 或從原始碼安裝
+### 從原始碼安裝
+
+```bash
 git clone https://github.com/your-username/Modern_agent.git
 cd Modern_agent
 pip install -e .
 ```
 
-若需使用向量資料庫記憶，請額外安裝：
+### 依賴環境
 
-```bash
-pip install modern-agent[memory]
-```
+- Python 3.10 或以上
+- 建議使用虛擬環境（venv / conda）
 
 ---
 
-## Usage
+## 🚀 快速開始
 
-以下是一個簡單的範例，展示如何使用 Modern Agent 建立一個能回答問題並執行計算的代理：
+### 基本使用
 
 ```python
-from modern_agent import Agent, LLM, Tool
+from modern_agent import Agent
 
-# 初始化 LLM（以 OpenAI 為例）
-llm = LLM(model="gpt-4", api_key="your-api-key")
-
-# 定義工具
-calculator = Tool(
-    name="calculator",
-    description="執行四則運算",
-    func=lambda expr: eval(expr)
-)
-
-# 建立 Agent
+# 初始化代理
 agent = Agent(
-    llm=llm,
-    tools=[calculator],
-    memory_type="short_term"  # 或 "long_term"
+    model="gpt-4o",
+    system_prompt="你是一位專業的技術寫作者。"
 )
 
 # 執行任務
-response = agent.run("今天台北的天氣如何？順便計算 1234 * 5678")
+response = agent.run("請解釋 Linux 命令行管道的運作原理")
 print(response)
 ```
 
-更多進階用法（自定義規劃器、持久化記憶、非同步調用）請參考 [文件](https://github.com/your-username/Modern_agent/wiki)。
+### 使用工具
+
+```python
+from modern_agent.tools import WebSearchTool, FileReaderTool
+
+agent.register_tools([
+    WebSearchTool(),
+    FileReaderTool()
+])
+
+agent.run("搜尋 2026 年最新的 AI Agent 框架比較")
+```
 
 ---
 
-## License
+## 📁 專案結構
 
-本專案採用 MIT 授權條款。詳細內容請參閱 [LICENSE](LICENSE) 文件。
+```
+Modern_agent/
+├── modern_agent/          # 核心程式碼
+│   ├── core/              # 代理引擎與排程器
+│   ├── tools/             # 內建工具集
+│   ├── memory/            # 記憶與上下文管理
+│   └── models/            # LLM 模型適配器
+├── examples/              # 使用範例
+├── tests/                 # 單元測試
+├── docs/                  # 文件
+├── content/               # 自動產出內容
+│   ├── tech/              # 技術文件
+│   └── biz/               # 商業分析
+├── LICENSE
+└── README.md
+```
 
 ---
 
-*Automated by Davin Portfolio Engine*
+## 🧪 今日產出內容範例
+
+本框架自動化產出的高品質內容：
+
+| 類別 | 檔案名稱 | 說明 |
+|------|----------|------|
+| 💻 技術 | `20260617_Linux命令行技巧：提升效率的10個組.md` | Linux 實用命令組合技巧 |
+| 📊 商業 | `20260617_訂閱制商業模式深度解析.md` | SaaS 訂閱制策略與案例分析 |
+
+> 這些文件由 Modern Agent 配合 **Davin Portfolio Engine** 自動生成，展現框架的內容產出能力。
+
+---
+
+## 📄 授權條款
+
+本專案採用 **MIT License** 授權 — 詳細內容請參閱 [LICENSE](LICENSE) 檔案。
+
+```
+MIT License
+
+Copyright (c) 2026 Modern Agent Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files...
+```
+
+---
+
+## 🤝 貢獻指南
+
+歡迎任何形式的貢獻！請先閱讀 [CONTRIBUTING.md](CONTRIBUTING.md) 了解開發流程。
+
+- 報告 Bug → [Issues](https://github.com/your-username/Modern_agent/issues)
+- 提交 PR → [Pull Requests](https://github.com/your-username/Modern_agent/pulls)
+- 討論功能 → [Discussions](https://github.com/your-username/Modern_agent/discussions)
+
+---
+
+## 📬 聯繫
+
+如有任何問題或合作需求，歡迎透過以下方式聯繫：
+
+- GitHub Issues：直接提交問題
+- Email：your-email@example.com
+
+---
+
+<div align="center">
+
+**Automated by Davin Portfolio Engine**
+
+<sub>Copyright © 2026 Modern Agent. All rights reserved.</sub>
+
+</div>
 ```
