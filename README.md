@@ -1,17 +1,34 @@
 # Modern Agent
 
-![GitHub last commit](https://img.shields.io/github/last-commit/TeWei02/Modern_agent)
-![GitHub repo size](https://img.shields.io/github/repo-size/TeWei02/Modern_agent)
-![GitHub](https://img.shields.io/github/license/TeWei02/Modern_agent)
+[![Python](https://img.shields.io/badge/Python-3.10-%233776AB?logo=python)]()
+[![Status](https://img.shields.io/badge/Status-Planning-blue)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-現代化 AI Agent 框架的實驗與規劃倉庫。
+現代化智慧體（Agent）框架的實驗與規劃倉庫，探索工具使用、情境記憶管理與多模型整合的設計方法。
 
-> **狀態**：實驗記錄，尚無完整可執行版本。
+## 狀態
 
-## 說明
+> **規劃中**：目前為架構探索與設計草稿階段，尚無完整可執行的實作。
 
-本倉庫原為探索現代化 AI Agent 架構（工具呼叫、記憶管理、模型整合）的實驗筆記與規劃草稿，尚未整理為完整專案。
+## 研究方向
+
+| 主題 | 說明 |
+|------|------|
+| 工具使用（Tool Use） | 如何讓智慧體安全且有效地呼叫外部工具 |
+| 情境記憶管理 | 長期 / 短期記憶的儲存、檢索與更新策略 |
+| 多模型整合 | 不同模型的任務分工與協調機制 |
+| 任務規劃 | 複雜任務的分解、排序與執行追蹤 |
+
+## 規劃架構
+
+```
+Modern_agent/
+├── docs/           # 設計文件與研究筆記
+├── experiments/    # 小型概念驗證
+├── framework/      # 框架原型
+└── README.md
+```
 
 ## License
 
-MIT
+MIT © [Te-Wei Ko](https://github.com/TeWei02)
