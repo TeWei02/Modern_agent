@@ -1,8 +1,12 @@
 # Modern Agent
 
+![GitHub last commit](https://img.shields.io/github/last-commit/TeWei02/Modern_agent)
+![GitHub repo size](https://img.shields.io/github/repo-size/TeWei02/Modern_agent)
+![GitHub](https://img.shields.io/github/license/TeWei02/Modern_agent)
+
 現代化 AI Agent 框架的實驗與規劃倉庫。
 
-> 狀態：實驗記錄，尚無完整可執行版本。
+> **狀態**：實驗記錄，尚無完整可執行版本。
 
 ## 說明
 
